@@ -1,0 +1,10 @@
+@using System.ComponentModel
+@using BlazorMVVM.Pages.ViewModel
+
+@inherits BaseViewModelComponent<MyModel>
+
+<div class="component">
+	<h2>Child content</h2>
+	<p>@DataContext.Id - @DataContext.Name</p>
+	<p>@DataContext.Date</p>
+</div>

@@ -1,0 +1,11 @@
+﻿@using System.ComponentModel
+@using BlazorMVVM.Pages.ViewModel
+
+@inherits BaseViewModelComponent<MyModel>
+
+
+<div class="component">
+	<h2>Child2 content</h2>
+	<p>@DataContext.Id - @DataContext.Name</p>
+	<button @onclick="@(()=>DataContext.Date = DateTime.UtcNow.ToString("G"))"> Get DateTime </button>
+</div>
