@@ -9,5 +9,10 @@ namespace BlazorMVVM.Pages.Models
             get => Get<WeatherForecast[]>();
             set => Set(value);
         }
+        public string Title
+        {
+            get=> Get<string>();
+            set=> Set(value);
+        }        
     }
 }

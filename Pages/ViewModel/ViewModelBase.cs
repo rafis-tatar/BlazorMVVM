@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 public abstract class ViewModelBase : INotifyPropertyChanged,IDisposable
 {
     Dictionary<string,IValueWrapper> propertys = new();
-    protected T Get<T>([CallerMemberName] string propertyName = null)
+    public T Get<T>([CallerMemberName] string propertyName = null)
     {
         return propertys.TryGetValue(propertyName, out IValueWrapper _value)?((ValueWrapper<T>)_value).Value:default(T);
     }
@@ -32,9 +33,9 @@ public abstract class ViewModelBase : INotifyPropertyChanged,IDisposable
         if (hiden) return;
         OnPropertyChanged(propertyName);        
     }
+    
 
     public event PropertyChangedEventHandler PropertyChanged;
-
     protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

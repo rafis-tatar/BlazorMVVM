@@ -1,50 +1,30 @@
 @page "/testpage"
 @using BlazorMVVM.Pages.Components;
-@*@implements IDisposable;
-
-@*from servise*@
 @inject MyModel ViewModel;
+@implements IDisposable;
 
-<p>this Parent</p>
 <ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-<ChildComponent DataContext="@ViewModel"></ChildComponent>
-
 <Child2Component DataContext="@ViewModel"></Child2Component>
 
-@code {
-    //MyModel ViewModel {get;}
-    public TestPage()
-    {
-        //ViewModel = new();
+@code{
+    bool isRun = true;
+    protected override void OnInitialized()
+    {          
+        Do(); 
+    } 
+    async void Do()
+    {         
+        while(isRun)
+        {               
+            ViewModel.Id++;
+            ViewModel.Name = $"Name-{ViewModel.Id}";
+            ViewModel.Date = DateTime.UtcNow.ToLongTimeString();
+            await Task.Delay(1000);
+        }
+                
     }
-
-   //protected override async Task OnInitializedAsync()
-   //{
-   //    await Do();
-   //}
-   // public async Task Do()
-   // {
-   //     ViewModel.Date = ViewModel.Date ?? DateTime.UtcNow.ToString("G");
-   //     while (isRun)
-   //     {
-   //         ViewModel.Id++;
-   //         ViewModel.Name = $"Name - {ViewModel.Id}";
-   //         await Task.Delay(1000); 
-   //     }        
-   // }
-   // bool isRun = true;
-   // public void Dispose()
-   // {
-   //     isRun = false;
-   // }
-
+    public void Dispose()
+    {
+        isRun = false;
+    }   
 }

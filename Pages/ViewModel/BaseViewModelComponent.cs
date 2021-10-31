@@ -11,14 +11,14 @@ namespace BlazorMVVM.Pages.ViewModel
         [Parameter] public TDataContext DataContext { get; set; }
 
         protected override void OnInitialized()
-        {
+        {            
             DataContext.PropertyChanged += OnContextPropertyChanged;
             base.OnInitialized();
             if (Debugger.IsAttached) Console.WriteLine($"{this.GetType().Name} OnInitialized");
         }
-        public virtual void OnContextPropertyChanged(object sender, PropertyChangedEventArgs arg)
+        public virtual async void OnContextPropertyChanged(object sender, PropertyChangedEventArgs arg)
         {
-            StateHasChanged();
+            await InvokeAsync(StateHasChanged);            
             if (Debugger.IsAttached) Console.WriteLine($"{this.GetType().Name} OnContextPropertyChanged: Property={arg.PropertyName}");
         }
         public virtual void Dispose() 

@@ -3,19 +3,18 @@
 @using BlazorMVVM.Data
 @using BlazorMVVM.Pages.Models
 @using BlazorMVVM.Pages.Components;
+
 @inject WeatherForecastService ForecastService
+@inject MyModel ViewModel;
 
-<h1>Weather forecast</h1>
-
+<h1>@ViewModel.FatchDataModel.Title</h1>
 <p>This component demonstrates fetching data from a service.</p>
-<ForecastTableComponent DataContext="@ViewModel"></ForecastTableComponent>
+<ForecastTableComponent DataContext="@ViewModel.FatchDataModel"></ForecastTableComponent>
 
-@code {
-
-    WeatherModel ViewModel {get;} = new();
+@code {    
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(1000);
-        ViewModel.Forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        await Task.Delay(1000);        
+        ViewModel.FatchDataModel.Forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
     }
 }

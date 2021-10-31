@@ -8,4 +8,7 @@
 	<h2>Child2 content</h2>
 	<p>@DataContext.Id - @DataContext.Name</p>
 	<button @onclick="@(()=>DataContext.Date = DateTime.UtcNow.ToString("G"))"> Get DateTime </button>
+	<br/>
+	<dl></dl>
+	<input @bind-value="DataContext.FatchDataModel.Title"/>
 </div>

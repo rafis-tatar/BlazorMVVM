@@ -6,16 +6,12 @@ public class ValueWrapper<T> : IValueWrapper
         get { return Value; }
         set { this.Value = (T)value; }
     }
-    public bool HasValue { get; set; }
+    public bool HasValue { get=>this.Value!=null; }
 
-    public ValueWrapper() 
-    {
-        this.HasValue = false;
-    }
+    public ValueWrapper() {}
 
     public ValueWrapper(T value) 
     {
-        this.Value = value;
-        this.HasValue = value != null;
+        this.Value = value;        
     }
 }
