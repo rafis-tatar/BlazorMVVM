@@ -1,16 +1,13 @@
 ﻿@page "/counter"
+@inject MyModel ViewModel;
 
-<h1>Counter</h1>
-
-<p>Current count: @currentCount</p>
-
+<h1>Counter on MVVM</h1>
+<p>Current count: @ViewModel.Id</p>
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-@code {
-    private int currentCount = 0;
-
+@code {     
     private void IncrementCount()
     {
-        currentCount++;
+        ViewModel.Id++;
     }
 }
