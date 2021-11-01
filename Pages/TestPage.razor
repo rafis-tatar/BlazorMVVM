@@ -1,12 +1,16 @@
 @page "/testpage"
 @using BlazorMVVM.Pages.Components;
-@inject MyModel ViewModel;
+@*@inject MyModel ViewModel;*@
 @implements IDisposable;
 
 <ChildComponent DataContext="@ViewModel"></ChildComponent>
 <Child2Component DataContext="@ViewModel"></Child2Component>
 
 @code{
+     
+    [CascadingParameter(Name = "ViewModel")]
+     protected MyModel ViewModel { get; set; }
+
     bool isRun = true;
     protected override void OnInitialized()
     {          
@@ -23,7 +27,7 @@
         }
                 
     }
-    public void Dispose()
+    public virtual void Dispose()
     {
         isRun = false;
     }   

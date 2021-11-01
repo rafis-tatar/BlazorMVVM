@@ -5,13 +5,16 @@
 @using BlazorMVVM.Pages.Components;
 
 @inject WeatherForecastService ForecastService
-@inject MyModel ViewModel;
+@*@inject MyModel ViewModel;*@
 
 <h1>@ViewModel.FatchDataModel.Title</h1>
 <p>This component demonstrates fetching data from a service.</p>
 <ForecastTableComponent DataContext="@ViewModel.FatchDataModel"></ForecastTableComponent>
 
 @code {    
+    [CascadingParameter(Name = "ViewModel")]
+    protected MyModel ViewModel { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(1000);        

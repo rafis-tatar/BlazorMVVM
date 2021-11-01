@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-@inject MyModel ViewModel;
+@*@inject MyModel ViewModel;*@
 
 <div class="page">
     <div class="sidebar">
@@ -12,11 +12,13 @@
         </div>
 
         <div class="content px-4">
-            @Body
+            <CascadingValue Name="ViewModel" Value="ViewModel">
+                @Body
+            </CascadingValue>
         </div>
     </div>
 </div>
 @code{
-    
-  
+    MyModel ViewModel = new();
+
 }

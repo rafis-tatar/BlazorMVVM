@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace BlazorMVVM.Pages.ViewModel
 {
-    public abstract class BaseViewModelComponent<TDataContext> : ComponentBase, IDisposable where TDataContext : INotifyPropertyChanged
+    public abstract class DataContextComponent<TDataContext> : ComponentBase, IDisposable where TDataContext : INotifyPropertyChanged
     {
         [Parameter] public TDataContext DataContext { get; set; }
 

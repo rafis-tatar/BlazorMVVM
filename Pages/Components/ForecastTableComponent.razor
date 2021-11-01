@@ -1,6 +1,6 @@
 ﻿@using BlazorMVVM.Pages.Models
 @using BlazorMVVM.Pages.ViewModel
-@inherits BaseViewModelComponent<WeatherModel>
+@inherits DataContextComponent<WeatherModel>
 
 @if (DataContext.Forecasts == null)
 {
